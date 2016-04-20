@@ -14,7 +14,7 @@ green:((float)((rgbValue & 0x00FF00) >>  8))/255.0 \
 blue:((float)((rgbValue & 0x0000FF) >>  0))/255.0 \
 alpha:1.0]
 
-@interface ViewController ()
+@interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) NSArray<NSNumber *> *colors;
 
@@ -49,6 +49,10 @@ alpha:1.0]
 // TODO: Adicionar o método tableView:didSelectRowAtIndexPath:
 // TODO: Ao tocar em uma cor exibir o Hex dessa cor em um alerta.
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self alert:@"Cor" setMensagem:[[NSString alloc] initWithFormat:@"%@",[self.colors objectAtIndex:indexPath.row]]];
+}
+
 #pragma mark - Button Actions Methods
 
 - (void)changePallete:(UIBarButtonItem *)sender {
@@ -68,6 +72,12 @@ alpha:1.0]
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)alert: (NSString*)titulo setMensagem:(NSString*)mensagem{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:titulo message:mensagem delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    
+    [alert show];
 }
 
 @end
