@@ -38,7 +38,7 @@ alpha:1.0]
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
-    NSInteger hex = self.colors[indexPath.row + 3].integerValue;
+    NSInteger hex = self.colors[indexPath.row].integerValue;
     cell.backgroundColor = UIColorFromRGB(hex);
     
     return cell;
